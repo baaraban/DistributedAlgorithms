@@ -1,13 +1,17 @@
-﻿using PrefixSum.Interfaces;
+﻿using Infrastructure.Managers.Interfaces;
+using PrefixSum.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace PrefixSum.Implementations
 {
-    internal class PrefixTPLSummator: IPrefixSum
+    public class PrefixSummatorWithManager: IPrefixSum
     {
+        private IThreadManager manager;
+
         private bool isPowerOfTwo(int x)
         {
             return (x != 0) && ((x & (x - 1)) == 0);
@@ -17,7 +21,8 @@ namespace PrefixSum.Implementations
         {
             var result = (int[])array.Clone();
             var n = result.Length;
-            if (!isPowerOfTwo(n)) {
+            if (!isPowerOfTwo(n))
+            {
                 var populateTo = (int)(Math.Pow(2, ((int)Math.Log(n, 2) + 1)));
                 result = result.Concat(Enumerable.Repeat<int>(0, populateTo - n)).ToArray();
             }
@@ -26,19 +31,21 @@ namespace PrefixSum.Implementations
 
         private void UpSweepPhase(int[] array)
         {
-            for(var depth = 0; depth < (Math.Log(array.Length-1, 2)); depth++)
+            var actionCounter = 0;
+            for (var depth = 0; depth < (Math.Log(array.Length - 1, 2)); depth++)
             {
-                var tasks = new List<Task>();
-                for (int i = 0; i < array.Length - 1; i+= (int)Math.Pow(2, depth + 1))
+                for (int i = 0; i < array.Length - 1; i += (int)Math.Pow(2, depth + 1))
                 {
                     var resultI = (int)(i + Math.Pow(2, depth + 1) - 1);
                     var firstI = (int)(i + Math.Pow(2, depth) - 1);
-                    var task = Task.Factory.StartNew(() => {
+                    Action a = () =>
+                    {
+                        Console.WriteLine("I'm action - {0}", actionCounter++);
                         array[resultI] += array[firstI];
-                    });
-                    tasks.Add(task);
+                    };
+                    manager.ScheduleAction(a);
                 }
-                Task.WaitAll(tasks.ToArray());
+                manager.WaitAll();
             }
         }
 
@@ -47,20 +54,19 @@ namespace PrefixSum.Implementations
             array[array.Length - 1] = 0;
             for (var depth = (int)Math.Log(array.Length - 1, 2); depth >= 0; --depth)
             {
-                var tasks = new List<Task>();
                 for (var i = 0; i < array.Length - 1; i += (int)Math.Pow(2, depth + 1))
                 {
                     var subI = (int)(i + Math.Pow(2, depth) - 1);
                     var firstI = (int)(i + Math.Pow(2, depth + 1) - 1);
-                    var task = Task.Factory.StartNew(() =>
+                    Action a = () =>
                     {
                         var sub = array[subI];
                         array[subI] = array[firstI];
                         array[firstI] += sub;
-                    });
-                    tasks.Add(task);
+                    };
+                    this.manager.ScheduleAction(a);
                 }
-                Task.WaitAll(tasks.ToArray());
+                manager.WaitAll();
             }
         }
 
@@ -75,6 +81,11 @@ namespace PrefixSum.Implementations
             {
                 return result.Take(input.Length + 1).ToArray();
             }
+        }
+
+        public PrefixSummatorWithManager(IThreadManager manager)
+        {
+            this.manager = manager;
         }
 
         public int[] GetPrefixSum(int[] array)
