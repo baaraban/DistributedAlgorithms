@@ -1,4 +1,5 @@
-﻿using PrefixSum.Interfaces;
+﻿using Helpers.Helpers;
+using PrefixSum.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,16 +9,11 @@ namespace PrefixSum.Implementations
 {
     internal class PrefixTPLSummator: IPrefixSum
     {
-        private bool isPowerOfTwo(int x)
-        {
-            return (x != 0) && ((x & (x - 1)) == 0);
-        }
-
         private int[] preProcessArray(int[] array)
         {
             var result = (int[])array.Clone();
             var n = result.Length;
-            if (!isPowerOfTwo(n)) {
+            if (!MathHelper.IsPowerOfTwo(n)) {
                 var populateTo = (int)(Math.Pow(2, ((int)Math.Log(n, 2) + 1)));
                 result = result.Concat(Enumerable.Repeat<int>(0, populateTo - n)).ToArray();
             }

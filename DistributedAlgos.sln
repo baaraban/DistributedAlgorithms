@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrefixSum", "PrefixSum\Pref
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{D6F26C1C-7BB8-4BE9-8A5C-08AD52F008DC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helpers", "Helpers\Helpers.csproj", "{2C4A17E0-FCA9-4037-9F48-493B15DCA796}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{D6F26C1C-7BB8-4BE9-8A5C-08AD52F008DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6F26C1C-7BB8-4BE9-8A5C-08AD52F008DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6F26C1C-7BB8-4BE9-8A5C-08AD52F008DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C4A17E0-FCA9-4037-9F48-493B15DCA796}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C4A17E0-FCA9-4037-9F48-493B15DCA796}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C4A17E0-FCA9-4037-9F48-493B15DCA796}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C4A17E0-FCA9-4037-9F48-493B15DCA796}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

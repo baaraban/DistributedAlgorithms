@@ -4,15 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1A5C4A99-87C0-4401-B9A7-9847C831569C}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>PrefixSum</RootNamespace>
-    <AssemblyName>PrefixSum</AssemblyName>
+    <ProjectGuid>{2C4A17E0-FCA9-4037-9F48-493B15DCA796}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Helpers</RootNamespace>
+    <AssemblyName>Helpers</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -41,25 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Implementations\PrefixSummator.cs" />
-    <Compile Include="Implementations\PrefixSummatorWithManager.cs" />
-    <Compile Include="Implementations\PrefixTPLSummator.cs" />
-    <Compile Include="Interfaces\IPrefixSum.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Helpers\MathHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Helpers\Helpers.csproj">
-      <Project>{2c4a17e0-fca9-4037-9f48-493b15dca796}</Project>
-      <Name>Helpers</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
-      <Project>{d6f26c1c-7bb8-4be9-8a5c-08ad52f008dc}</Project>
-      <Name>Infrastructure</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
