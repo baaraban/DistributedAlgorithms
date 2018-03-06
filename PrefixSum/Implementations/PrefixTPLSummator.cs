@@ -1,4 +1,4 @@
-﻿using Helpers.Helpers;
+﻿using Helpers;
 using PrefixSum.Interfaces;
 using System;
 using System.Collections.Generic;
