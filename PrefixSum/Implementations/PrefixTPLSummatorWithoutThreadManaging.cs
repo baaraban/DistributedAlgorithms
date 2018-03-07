@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PrefixSum.Implementations
 {
-    internal class PrefixTPLSummator: IPrefixSum
+    internal class PrefixTPLSummatorWithoutThreadManaging: IPrefixSum
     {
         private int[] preProcessArray(int[] array)
         {

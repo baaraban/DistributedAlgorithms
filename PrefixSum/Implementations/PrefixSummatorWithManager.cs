@@ -33,7 +33,6 @@ namespace PrefixSum.Implementations
                     var firstI = (int)(i + Math.Pow(2, depth) - 1);
                     Action a = () =>
                     {
-                        Console.WriteLine("I'm action - {0}", actionCounter++);
                         array[resultI] += array[firstI];
                     };
                     manager.ScheduleAction(a);

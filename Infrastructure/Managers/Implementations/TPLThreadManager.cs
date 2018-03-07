@@ -1,6 +1,7 @@
 ﻿using Infrastructure.Managers.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Infrastructure.Managers.Implementations
@@ -22,19 +23,23 @@ namespace Infrastructure.Managers.Implementations
 
         private Task initializeTask(Action a)
         {
-            var task = new Task(a);
-            task.ContinueWith((t) => {
-                this.currentRunning.Remove(t);
-                this.proceedExecution();
-            });
-            this.currentRunning.Add(task);
-            return task;
+            lock (locker)
+            {
+                var task = new Task(a);
+                task.ContinueWith((t) =>
+                {
+                    this.proceedExecution();
+                });
+                this.currentRunning.Add(task);
+                return task;
+            }
         }
 
         private void proceedExecution()
         {
             lock (locker)
             {
+                this.currentRunning = this.currentRunning.Where(t => !t.IsCompleted || t == null).ToList();
                 if (actionQueue.Count == 0) return;
                 if (!canRunParallel) return;
                 initializeTask(this.actionQueue.Dequeue()).Start();
@@ -65,8 +70,12 @@ namespace Infrastructure.Managers.Implementations
 
         public void WaitAll()
         {
-            while(actionQueue.Count != 0){ }
-            Task.WaitAll();
+            while(actionQueue.Count != 0){}
+            lock (locker)
+            {
+                Task.WaitAll(this.currentRunning.ToArray());
+                this.currentRunning = new List<Task>();
+            }
         }
     }
 }
