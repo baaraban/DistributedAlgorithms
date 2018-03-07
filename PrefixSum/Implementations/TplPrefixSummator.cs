@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace PrefixSum.Implementations
 {
-    internal class PrefixTPLSummatorWithoutThreadManaging: IPrefixSum
+    internal class TplPrefixSummator: IPrefixSum
     {
+        private readonly int amountOfThreadsUsing;
+
         private int[] preProcessArray(int[] array)
         {
             var result = (int[])array.Clone();
@@ -33,6 +35,11 @@ namespace PrefixSum.Implementations
                         array[resultI] += array[firstI];
                     });
                     tasks.Add(task);
+                    if (tasks.Count == this.amountOfThreadsUsing)
+                    {
+                        Task.WaitAll(tasks.ToArray());
+                        tasks = new List<Task>();
+                    }
                 }
                 Task.WaitAll(tasks.ToArray());
             }
@@ -55,6 +62,10 @@ namespace PrefixSum.Implementations
                         array[firstI] += sub;
                     });
                     tasks.Add(task);
+                    if(tasks.Count == this.amountOfThreadsUsing)
+                    {
+                        Task.WaitAll(tasks.ToArray());
+                    }
                 }
                 Task.WaitAll(tasks.ToArray());
             }
@@ -71,6 +82,11 @@ namespace PrefixSum.Implementations
             {
                 return result.Take(input.Length + 1).ToArray();
             }
+        }
+
+        public TplPrefixSummator(int amountOfThreads = 4)
+        {
+            this.amountOfThreadsUsing = amountOfThreads;
         }
 
         public int[] GetPrefixSum(int[] array)

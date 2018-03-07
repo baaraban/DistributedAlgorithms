@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Managers\Implementations\SystemThreadingThreadManager.cs" />
     <Compile Include="Managers\Implementations\TPLThreadManager.cs" />
     <Compile Include="Managers\Interfaces\IThreadManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

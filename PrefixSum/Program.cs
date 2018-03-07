@@ -10,23 +10,24 @@ namespace PrefixSum
     {
         static void Main(string[] args)
         {
-            var example = Enumerable.Repeat(1, 1000000).ToArray();
+            var example = Enumerable.Repeat(1, 1000).ToArray();
             //var example = new int[] { 1, 2, 3, 4, 5, 6, 7};
-            //var result = new PrefixSummator().GetPrefixSum(example);
-            Console.WriteLine("Not Parallel is done");
-            //var paralelResult = new PrefixTPLSummator().GetPrefixSum(example);
-            //Console.WriteLine("RESULT:");
+            //var result = new PrefixSummator().GetPrefixSum(example); 
+            var paralelResult = new PrefixTPLSummatorWithoutThreadManaging().GetPrefixSum(example);
+            Console.WriteLine("RESULT:");
+            printArrayInConsole(paralelResult);
+            
             //
             //Console.WriteLine("PARALLEL RESULT:");
             //foreach (var a in paralelResult)
             //    Console.Write(a + " ");
             //Console.WriteLine();
-            var tM = new TPLThreadManager(4);
+            //var tM = new TPLThreadManager(4);
 
-            var parallelSummator = new PrefixSummatorWithManager(tM);
+            //var parallelSummator = new PrefixSummatorWithManager(tM);
             //result = parallelSummator.GetPrefixSum(example);
             //Console.WriteLine("Prefix Sum with Manager");
-            TPLManagerShowOff();   
+            //TPLManagerShowOff();   
         }
 
         public static void printArrayInConsole(int[] array)
