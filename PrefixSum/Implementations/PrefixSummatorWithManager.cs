@@ -8,7 +8,7 @@ namespace PrefixSum.Implementations
 {
     public class PrefixSummatorWithManager: IPrefixSum
     {
-        private IThreadManager manager;
+        private IParallelActionQueue manager;
 
         private int[] preProcessArray(int[] array)
         {
@@ -24,9 +24,9 @@ namespace PrefixSum.Implementations
 
         private void UpSweepPhase(int[] array)
         {
-            var actionCounter = 0;
             for (var depth = 0; depth < (Math.Log(array.Length - 1, 2)); depth++)
             {
+                manager.Start();
                 for (int i = 0; i < array.Length - 1; i += (int)Math.Pow(2, depth + 1))
                 {
                     var resultI = (int)(i + Math.Pow(2, depth + 1) - 1);
@@ -37,7 +37,7 @@ namespace PrefixSum.Implementations
                     };
                     manager.ScheduleAction(a);
                 }
-                manager.WaitAll();
+                manager.SynchronizeQueue();
             }
         }
 
@@ -46,6 +46,7 @@ namespace PrefixSum.Implementations
             array[array.Length - 1] = 0;
             for (var depth = (int)Math.Log(array.Length - 1, 2); depth >= 0; --depth)
             {
+                manager.Start();
                 for (var i = 0; i < array.Length - 1; i += (int)Math.Pow(2, depth + 1))
                 {
                     var subI = (int)(i + Math.Pow(2, depth) - 1);
@@ -58,7 +59,7 @@ namespace PrefixSum.Implementations
                     };
                     this.manager.ScheduleAction(a);
                 }
-                manager.WaitAll();
+                manager.SynchronizeQueue();
             }
         }
 
@@ -75,7 +76,7 @@ namespace PrefixSum.Implementations
             }
         }
 
-        public PrefixSummatorWithManager(IThreadManager manager)
+        public PrefixSummatorWithManager(IParallelActionQueue manager)
         {
             this.manager = manager;
         }
