@@ -1,6 +1,6 @@
 ﻿namespace MergeSort.Interfaces
 {
-    interface IMergeSorter
+    public interface IMergeSorter
     {
         int[] MergeSort(int[] array);
     }

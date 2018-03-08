@@ -1,6 +1,6 @@
 ﻿namespace PrefixSum.Interfaces
 {
-    interface IPrefixSum
+    public interface IPrefixSum
     {
         int[] GetPrefixSum(int[] array);
     }
