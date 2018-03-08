@@ -24,7 +24,7 @@ namespace PrefixSum
             //Console.WriteLine();
             var tM = new TPLActionQueue(4);
 
-            var parallelSummator = new PrefixSummatorWithManager(tM);
+            var parallelSummator = new PrefixSummatorWithQueue(tM);
             var result = parallelSummator.GetPrefixSum(example);
             Console.WriteLine("Prefix Sum with Manager");
             printArrayInConsole(result);

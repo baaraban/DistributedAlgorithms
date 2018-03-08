@@ -41,7 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Implementations\SequantialMergeSorter.cs" />
+    <Compile Include="Implementations\ParallelMergeSorterForInfiniteThreads.cs" />
+    <Compile Include="Implementations\SequentialMergeSorter.cs" />
     <Compile Include="Interfaces\IMergeSorter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

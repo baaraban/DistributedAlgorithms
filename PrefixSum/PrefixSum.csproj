@@ -42,8 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Implementations\PrefixSummator.cs" />
-    <Compile Include="Implementations\PrefixSummatorWithManager.cs" />
-    <Compile Include="Implementations\TplPrefixSummator.cs" />
+    <Compile Include="Implementations\PrefixSummatorWithQueue.cs" />
+    <Compile Include="Implementations\PrefixSummatorForInfiniteThreads.cs" />
     <Compile Include="Interfaces\IPrefixSum.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -6,9 +6,9 @@ using System.Linq;
 
 namespace PrefixSum.Implementations
 {
-    public class PrefixSummatorWithManager: IPrefixSum
+    public class PrefixSummatorWithQueue: IPrefixSum
     {
-        private IParallelActionQueue manager;
+        private IParallelActionQueue actionQueue;
 
         private int[] preProcessArray(int[] array)
         {
@@ -26,7 +26,7 @@ namespace PrefixSum.Implementations
         {
             for (var depth = 0; depth < (Math.Log(array.Length - 1, 2)); depth++)
             {
-                manager.Start();
+                actionQueue.Start();
                 for (int i = 0; i < array.Length - 1; i += (int)Math.Pow(2, depth + 1))
                 {
                     var resultI = (int)(i + Math.Pow(2, depth + 1) - 1);
@@ -35,9 +35,9 @@ namespace PrefixSum.Implementations
                     {
                         array[resultI] += array[firstI];
                     };
-                    manager.ScheduleAction(a);
+                    actionQueue.ScheduleAction(a);
                 }
-                manager.SynchronizeQueue();
+                actionQueue.SynchronizeQueue();
             }
         }
 
@@ -46,7 +46,7 @@ namespace PrefixSum.Implementations
             array[array.Length - 1] = 0;
             for (var depth = (int)Math.Log(array.Length - 1, 2); depth >= 0; --depth)
             {
-                manager.Start();
+                actionQueue.Start();
                 for (var i = 0; i < array.Length - 1; i += (int)Math.Pow(2, depth + 1))
                 {
                     var subI = (int)(i + Math.Pow(2, depth) - 1);
@@ -57,9 +57,9 @@ namespace PrefixSum.Implementations
                         array[subI] = array[firstI];
                         array[firstI] += sub;
                     };
-                    this.manager.ScheduleAction(a);
+                    this.actionQueue.ScheduleAction(a);
                 }
-                manager.SynchronizeQueue();
+                actionQueue.SynchronizeQueue();
             }
         }
 
@@ -76,9 +76,9 @@ namespace PrefixSum.Implementations
             }
         }
 
-        public PrefixSummatorWithManager(IParallelActionQueue manager)
+        public PrefixSummatorWithQueue(IParallelActionQueue manager)
         {
-            this.manager = manager;
+            this.actionQueue = manager;
         }
 
         public int[] GetPrefixSum(int[] array)
