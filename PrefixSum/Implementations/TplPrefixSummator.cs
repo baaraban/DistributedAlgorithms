@@ -35,11 +35,6 @@ namespace PrefixSum.Implementations
                         array[resultI] += array[firstI];
                     });
                     tasks.Add(task);
-                    if (tasks.Count == this.amountOfThreadsUsing)
-                    {
-                        Task.WaitAll(tasks.ToArray());
-                        tasks = new List<Task>();
-                    }
                 }
                 Task.WaitAll(tasks.ToArray());
             }
