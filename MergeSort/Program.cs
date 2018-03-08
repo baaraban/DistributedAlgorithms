@@ -1,9 +1,5 @@
 ﻿using MergeSort.Implementations;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MergeSort
 {
@@ -13,7 +9,7 @@ namespace MergeSort
         {
             int[] x = new int[] { 2, 1, 19, 24, 1, 89, 3, 15 };
             //var result = new SequentialMergeSorter().MergeSort(x);
-            var result = new ParallelMergeSorterForInfiniteThreads().MergeSort(x);
+            var result = new ParallelWithActionStackForTwoThreads().MergeSort(x);
             printArrayInConsole(result);
         }
         public static void printArrayInConsole(int[] array)
