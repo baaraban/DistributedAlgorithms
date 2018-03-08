@@ -2,7 +2,7 @@
 
 namespace PrefixSum.Implementations
 {
-    internal class PrefixSummator: IPrefixSum
+    public class PrefixSummator: IPrefixSum
     {
         public int[] GetPrefixSum(int[] array)
         {

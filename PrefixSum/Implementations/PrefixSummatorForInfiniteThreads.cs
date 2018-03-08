@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PrefixSum.Implementations
 {
-    internal class PrefixSummatorForInfiniteThreads: IPrefixSum
+    public class PrefixSummatorForInfiniteThreads: IPrefixSum
     {
         private readonly int amountOfThreadsUsing;
 

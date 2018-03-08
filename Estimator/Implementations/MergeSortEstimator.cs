@@ -1,4 +1,5 @@
-﻿using MergeSort.Interfaces;
+﻿using MergeSort.Implementations;
+using MergeSort.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,17 +12,22 @@ namespace Estimator.Implementations
     {
         protected override void callAppropiateFunction(IMergeSorter imp, int[] param)
         {
-            throw new NotImplementedException();
+            imp.MergeSort(param);
         }
 
         protected override void initializeInterfaces()
         {
-            throw new NotImplementedException();
+            this.interfacesDictionary.Add("Sequantional", new SequentialMergeSorter());
+            this.interfacesDictionary.Add("Two threads, forming stack of execution", new ParallelWithActionStackForTwoThreads());
+            this.interfacesDictionary.Add("Parallel for infinite cores", new ParallelMergeSorterForInfiniteThreads());
         }
 
         protected override void initializeTestCases()
         {
-            throw new NotImplementedException();
+            for(var i = 2; i < 18; ++i)
+            {
+                this.testCases.Add($"2^{i} elements", Enumerable.Repeat(1, (int)Math.Pow(2, i)).ToArray());
+            }
         }
     }
 }

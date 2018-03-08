@@ -1,12 +1,12 @@
-﻿using System;
+﻿using MergeSort.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MergeSort.Implementations
 {
-    public class ParallelWithActionStackForTwoThreads: IMergeSort
+    public class ParallelWithActionStackForTwoThreads: IMergeSorter
     {
         private Stack<Action> actionStack = new Stack<Action>();
         private void merge(int[] array, int left, int leftEnd, int right)
