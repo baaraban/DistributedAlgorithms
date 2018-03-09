@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MergeSort.Implementations
 {
-    public class ParallelWithActionStackForTwoThreads: IMergeSorter
+    public class ParallelWithActionStackForTwoThreads : IMergeSorter
     {
         private Stack<Action> actionStack = new Stack<Action>();
         private void merge(int[] array, int left, int leftEnd, int right)
@@ -49,26 +49,55 @@ namespace MergeSort.Implementations
             }
         }
 
-        private void formStack(int[] array, int from, int to)
+        private void internalSort(int[] array, int from, int to)
         {
-            if (from == to)
             {
-                return;
+                if (from == to)
+                {
+                    return;
+                }
+                var leftEnd = (int)((from + to) / 2);
+                internalSort(array, from, leftEnd);
+                internalSort(array, leftEnd + 1, to);
+                merge(array, from, leftEnd, to);
             }
+        }
+
+        private void formStack(int[] array, int from, int to)
+        { 
             var leftEnd = (int)((from + to) / 2);
-            actionStack.Push(() => formStack(array, from, leftEnd));
-            actionStack.Push(() => formStack(array, leftEnd + 1, to));
+            actionStack.Push(() => internalSort(array, from, leftEnd));
+            actionStack.Push(() => internalSort(array, leftEnd + 1, to));
             actionStack.Push(() => merge(array, from, leftEnd, to));
+            if(from != leftEnd)
+            {
+                formStack(array, from, leftEnd);
+            }
+            if(leftEnd + 1 != to)
+            {
+                formStack(array, leftEnd + 1, to);
+            }
         }
 
         private void executeStack()
         {
-            while(!(this.actionStack.Count == 0))
+            while (!(this.actionStack.Count == 0))
             {
-                var task1 = Task.Factory.StartNew(() => actionStack.Pop()());
-                var task2 = Task.Factory.StartNew(() => actionStack.Pop()());
+
+                var task1 = Task.Factory.StartNew(() => actionStack?.Pop()?.Invoke());
+
+                if (actionStack.Count == 0)
+                {
+                    break;
+                }
+
+                var task2 = Task.Factory.StartNew(() => actionStack?.Pop()?.Invoke());
                 Task.WaitAll(task1, task2);
-                actionStack.Pop()();
+                if (actionStack.Count != 0)
+                {
+                    actionStack?.Pop()?.Invoke();
+                }
+
             }
         }
 

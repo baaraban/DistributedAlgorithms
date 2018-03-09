@@ -11,7 +11,7 @@ namespace Estimator
             var mergeSortEstimator = new MergeSortEstimator();
 
             new Thread(() => mergeSortEstimator.Estimate(@"C:\UCU\DistributedAlgorithms\HomeWorks\output\mergeSort.txt", true)).Start();
-            new Thread(() => prefixSumEstimator.Estimate(@"C:\UCU\DistributedAlgorithms\HomeWorks\output\prefixSum.txt", true)).Start();
+            //new Thread(() => prefixSumEstimator.Estimate(@"C:\UCU\DistributedAlgorithms\HomeWorks\output\prefixSum.txt", true)).Start();
         }
     }
 }
