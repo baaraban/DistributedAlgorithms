@@ -18,7 +18,7 @@ namespace MapReduce.DummySolutions
             int step = 0;
             for(var i = 0; i < amountOfPartitions; ++i)
             {
-                result.Add(input.Skip(0).Take(toTake).ToList());
+                result.Add(input.Skip(taken).Take(toTake).ToList());
                 taken += toTake;
                 step++;
                 if(step == amountOfPartitions - 1)
@@ -83,36 +83,67 @@ namespace MapReduce.DummySolutions
             return result;
         }
 
-        private List<Dictionary<int, List<int>>> splitBeforeReduce(Dictionary<int, List<int>> mapped, int amountOfPartitions)
+        private List<List<KeyValuePair<int, List<int>>>> splitBeforeReduce(Dictionary<int, List<int>> mapped, int amountOfPartitions)
         {
-            //var result = new List<Dictionary<int, List<int>>>();
-            //var total = mapped.Count;
-            //var toTake = total / amountOfPartitions;
-            //var taken = 0;
-            //for (var i = 0; i < amountOfPartitions; ++i)
-            //{
-            //    result.Add(mapped.Skip(0).Take(toTake).ToList());
-            //    taken += toTake;
-            //    step++;
-            //    if (step == amountOfPartitions - 1)
-            //    {
-            //        result.Add(input.Skip(taken).Take(total - taken).ToList());
-            //        break;
-            //    }
-            //}
-            //return result;
+            var result = new List<List<KeyValuePair<int, List<int>>>>();
+            var total = mapped.Count;
+            var toTake = total / amountOfPartitions;
+            var taken = 0;
+            var step = 0;
+            for (var i = 0; i < amountOfPartitions; ++i)
+            {
+                result.Add(mapped.Skip(taken).Take(toTake).ToList());
+                taken += toTake;
+                step++;
+                if (step == amountOfPartitions - 1)
+                {
+                    result.Add(mapped.Skip(taken).Take(total - taken).ToList());
+                    break;
+                }
+            }
+            return result;
         }
 
-        private List<Dictionary<int, int>> reduce(List<Dictionary<int, List<int>>> mapped)
+        private List<Dictionary<int, int>> reduce(List<List<KeyValuePair<int, List<int>>>> mapped)
         {
             var result = new List<Dictionary<int, int>>();
-
+            var tasks = new List<Task>();
+            foreach (var list in mapped)
+            {
+                var task = new Task(() =>
+                {
+                    var localList = list;
+                    var dict = new Dictionary<int, int>();
+                    foreach (var number in localList)
+                    {
+                        if (dict.ContainsKey(number.Key))
+                        {
+                            throw new Exception("Very bad");
+                        }
+                        else
+                        {
+                            dict.Add(number.Key, number.Value.Sum());
+                        }
+                    }
+                    lock (locker)
+                    {
+                        result.Add(dict);
+                    }
+                });
+                tasks.Add(task);
+                task.Start();
+            }
+            Task.WaitAll(tasks.ToArray());
             return result;
         }
 
         private Dictionary<int, int> mergeAfterReduce(List<Dictionary<int, int>> reduced)
         {
             var result = new Dictionary<int, int>();
+            foreach(var dict in reduced)
+            {
+                result = result.Union(dict).ToDictionary(x => x.Key, x => x.Value);
+            }
             return result;
         }
 
