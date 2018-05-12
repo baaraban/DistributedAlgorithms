@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Implementations\BaseEstimator.cs" />
+    <Compile Include="Implementations\ClosestDistanceEstimator.cs" />
     <Compile Include="Implementations\MergeSortEstimator.cs" />
     <Compile Include="Implementations\PrefixSumEstimator.cs" />
     <Compile Include="Interfaces\IEstimator.cs" />
@@ -52,6 +53,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Helpers\Helpers.csproj">
+      <Project>{2c4a17e0-fca9-4037-9f48-493b15dca796}</Project>
+      <Name>Helpers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
       <Project>{d6f26c1c-7bb8-4be9-8a5c-08ad52f008dc}</Project>
       <Name>Infrastructure</Name>
@@ -63,6 +68,10 @@
     <ProjectReference Include="..\PrefixSum\PrefixSum.csproj">
       <Project>{1a5c4a99-87c0-4401-b9a7-9847c831569c}</Project>
       <Name>PrefixSum</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TwoClosestPointsOnCanvas\TwoClosestPointsOnCanvas.csproj">
+      <Project>{d7a7e462-83d3-484a-9071-d3a95f1c6ffd}</Project>
+      <Name>TwoClosestPointsOnCanvas</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

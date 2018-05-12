@@ -1,0 +1,105 @@
+TEST - 2^2 elements
+Sequantional - 0 ms
+Parallel for infinite cores(Thread Pool) - 22 ms
+Parallel 2 threads(without Thread Pool) - 105 ms
+Parallel 2 threads(Thread Pool) - 1 ms
+Parallel 4 threads(without Thread Pool) - 254 ms
+Parallel 4 threads(Thread Pool) - 8 ms
+TEST - 2^3 elements
+Sequantional - 0 ms
+Parallel for infinite cores(Thread Pool) - 0 ms
+Parallel 2 threads(without Thread Pool) - 131 ms
+Parallel 2 threads(Thread Pool) - 3 ms
+Parallel 4 threads(without Thread Pool) - 549 ms
+Parallel 4 threads(Thread Pool) - 14 ms
+TEST - 2^4 elements
+Sequantional - 0 ms
+Parallel for infinite cores(Thread Pool) - 0 ms
+Parallel 2 threads(without Thread Pool) - 191 ms
+Parallel 2 threads(Thread Pool) - 7 ms
+Parallel 4 threads(without Thread Pool) - 552 ms
+Parallel 4 threads(Thread Pool) - 4 ms
+TEST - 2^5 elements
+Sequantional - 0 ms
+Parallel for infinite cores(Thread Pool) - 0 ms
+Parallel 2 threads(without Thread Pool) - 530 ms
+Parallel 2 threads(Thread Pool) - 24 ms
+Parallel 4 threads(without Thread Pool) - 777 ms
+Parallel 4 threads(Thread Pool) - 13 ms
+TEST - 2^6 elements
+Sequantional - 0 ms
+Parallel for infinite cores(Thread Pool) - 0 ms
+Parallel 2 threads(without Thread Pool) - 285 ms
+Parallel 2 threads(Thread Pool) - 17 ms
+Parallel 4 threads(without Thread Pool) - 814 ms
+Parallel 4 threads(Thread Pool) - 14 ms
+TEST - 2^7 elements
+Sequantional - 0 ms
+Parallel for infinite cores(Thread Pool) - 0 ms
+Parallel 2 threads(without Thread Pool) - 362 ms
+Parallel 2 threads(Thread Pool) - 21 ms
+Parallel 4 threads(without Thread Pool) - 981 ms
+Parallel 4 threads(Thread Pool) - 77 ms
+TEST - 2^8 elements
+Sequantional - 0 ms
+Parallel for infinite cores(Thread Pool) - 0 ms
+Parallel 2 threads(without Thread Pool) - 381 ms
+Parallel 2 threads(Thread Pool) - 23 ms
+Parallel 4 threads(without Thread Pool) - 2416 ms
+Parallel 4 threads(Thread Pool) - 118 ms
+TEST - 2^9 elements
+Sequantional - 0 ms
+Parallel for infinite cores(Thread Pool) - 0 ms
+Parallel 2 threads(without Thread Pool) - 453 ms
+Parallel 2 threads(Thread Pool) - 97 ms
+Parallel 4 threads(without Thread Pool) - 1480 ms
+Parallel 4 threads(Thread Pool) - 342 ms
+TEST - 2^10 elements
+Sequantional - 0 ms
+Parallel for infinite cores(Thread Pool) - 1 ms
+Parallel 2 threads(without Thread Pool) - 587 ms
+Parallel 2 threads(Thread Pool) - 131 ms
+Parallel 4 threads(without Thread Pool) - 1572 ms
+Parallel 4 threads(Thread Pool) - 184 ms
+TEST - 2^11 elements
+Sequantional - 0 ms
+Parallel for infinite cores(Thread Pool) - 2 ms
+Parallel 2 threads(without Thread Pool) - 737 ms
+Parallel 2 threads(Thread Pool) - 384 ms
+Parallel 4 threads(without Thread Pool) - 1798 ms
+Parallel 4 threads(Thread Pool) - 540 ms
+TEST - 2^12 elements
+Sequantional - 0 ms
+Parallel for infinite cores(Thread Pool) - 5 ms
+Parallel 2 threads(without Thread Pool) - 945 ms
+Parallel 2 threads(Thread Pool) - 482 ms
+Parallel 4 threads(without Thread Pool) - 2411 ms
+Parallel 4 threads(Thread Pool) - 619 ms
+TEST - 2^13 elements
+Sequantional - 0 ms
+Parallel for infinite cores(Thread Pool) - 9 ms
+Parallel 2 threads(without Thread Pool) - 1414 ms
+Parallel 2 threads(Thread Pool) - 873 ms
+Parallel 4 threads(without Thread Pool) - 4183 ms
+Parallel 4 threads(Thread Pool) - 5256 ms
+TEST - 2^14 elements
+Sequantional - 0 ms
+Parallel for infinite cores(Thread Pool) - 18 ms
+Parallel 2 threads(without Thread Pool) - 2003 ms
+Parallel 2 threads(Thread Pool) - 1797 ms
+Parallel 4 threads(without Thread Pool) - 4402 ms
+Parallel 4 threads(Thread Pool) - 2711 ms
+TEST - 2^15 elements
+Sequantional - 0 ms
+Parallel for infinite cores(Thread Pool) - 38 ms
+Parallel 2 threads(without Thread Pool) - 3136 ms
+Parallel 2 threads(Thread Pool) - 2710 ms
+Parallel 4 threads(without Thread Pool) - 5596 ms
+Parallel 4 threads(Thread Pool) - 4567 ms
+TEST - 2^16 elements
+Sequantional - 0 ms
+Parallel for infinite cores(Thread Pool) - 106 ms
+Parallel 2 threads(without Thread Pool) - 4692 ms
+Parallel 2 threads(Thread Pool) - 4995 ms
+Parallel 4 threads(without Thread Pool) - 9674 ms
+Parallel 4 threads(Thread Pool) - 8854 ms

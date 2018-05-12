@@ -8,7 +8,7 @@ using Helpers;
 
 namespace TwoClosestPointsOnCanvas.Implementations
 {
-    class TPLClosestPairFounder : IClosestPairFounder
+    public class TPLClosestPairFounder : IClosestPairFounder
     {
         private BruteForceClosestPairFounder bruteForce = new BruteForceClosestPairFounder();
         public readonly int DepthOfParalelization;
@@ -126,7 +126,8 @@ namespace TwoClosestPointsOnCanvas.Implementations
 
         public Tuple<Point, Point> GetClosestPair(List<Point> points)
         {
-            throw new NotImplementedException();
+            var resultRec = recursiveProcess(points, 0);
+            return resultRec.Item2.Between;
         }
     }
 }

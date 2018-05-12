@@ -1,0 +1,90 @@
+TEST - 2^2 elements
+Sequantional - 5 ms
+Two threads(TPL) - 40 ms
+Four threads(TPL) - 0 ms
+Eight threads(TPL) - 0 ms
+TEST - 2^3 elements
+Sequantional - 0 ms
+Two threads(TPL) - 0 ms
+Four threads(TPL) - 0 ms
+Eight threads(TPL) - 0 ms
+TEST - 2^4 elements
+Sequantional - 0 ms
+Two threads(TPL) - 0 ms
+Four threads(TPL) - 0 ms
+Eight threads(TPL) - 0 ms
+TEST - 2^5 elements
+Sequantional - 0 ms
+Two threads(TPL) - 1 ms
+Four threads(TPL) - 0 ms
+Eight threads(TPL) - 1 ms
+TEST - 2^6 elements
+Sequantional - 1 ms
+Two threads(TPL) - 0 ms
+Four threads(TPL) - 0 ms
+Eight threads(TPL) - 1 ms
+TEST - 2^7 elements
+Sequantional - 1 ms
+Two threads(TPL) - 10 ms
+Four threads(TPL) - 3 ms
+Eight threads(TPL) - 2 ms
+TEST - 2^8 elements
+Sequantional - 2 ms
+Two threads(TPL) - 1 ms
+Four threads(TPL) - 3 ms
+Eight threads(TPL) - 2 ms
+TEST - 2^9 elements
+Sequantional - 4 ms
+Two threads(TPL) - 61 ms
+Four threads(TPL) - 4 ms
+Eight threads(TPL) - 5 ms
+TEST - 2^10 elements
+Sequantional - 10 ms
+Two threads(TPL) - 12 ms
+Four threads(TPL) - 8 ms
+Eight threads(TPL) - 10 ms
+TEST - 2^11 elements
+Sequantional - 22 ms
+Two threads(TPL) - 13 ms
+Four threads(TPL) - 12 ms
+Eight threads(TPL) - 17 ms
+TEST - 2^12 elements
+Sequantional - 48 ms
+Two threads(TPL) - 30 ms
+Four threads(TPL) - 30 ms
+Eight threads(TPL) - 29 ms
+TEST - 2^13 elements
+Sequantional - 114 ms
+Two threads(TPL) - 63 ms
+Four threads(TPL) - 49 ms
+Eight threads(TPL) - 58 ms
+TEST - 2^14 elements
+Sequantional - 257 ms
+Two threads(TPL) - 111 ms
+Four threads(TPL) - 93 ms
+Eight threads(TPL) - 78 ms
+TEST - 2^15 elements
+Sequantional - 374 ms
+Two threads(TPL) - 218 ms
+Four threads(TPL) - 170 ms
+Eight threads(TPL) - 190 ms
+TEST - 2^16 elements
+Sequantional - 831 ms
+Two threads(TPL) - 467 ms
+Four threads(TPL) - 377 ms
+Eight threads(TPL) - 405 ms
+TEST - 2^17 elements
+Sequantional - 1685 ms
+Two threads(TPL) - 1013 ms
+Four threads(TPL) - 829 ms
+Eight threads(TPL) - 926 ms
+TEST - 2^18 elements
+Sequantional - 3723 ms
+Two threads(TPL) - 2255 ms
+Four threads(TPL) - 1888 ms
+Eight threads(TPL) - 1874 ms
+TEST - 2^19 elements
+Sequantional - 8534 ms
+Two threads(TPL) - 5157 ms
+Four threads(TPL) - 4086 ms
+Eight threads(TPL) - 4357 ms
