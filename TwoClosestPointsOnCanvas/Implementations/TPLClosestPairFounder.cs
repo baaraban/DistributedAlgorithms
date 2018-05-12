@@ -1,14 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Helpers.ConstructionClasses;
 using TwoClosestPointsOnCanvas.Interfaces;
-using System.Linq;
+using System.Threading.Tasks;
 using Helpers;
 
 namespace TwoClosestPointsOnCanvas.Implementations
 {
-    public class SequantionalClosestPairFounder : IClosestPairFounder
+    class TPLClosestPairFounder : IClosestPairFounder
     {
+        private BruteForceClosestPairFounder bruteForce = new BruteForceClosestPairFounder();
+        public readonly int DepthOfParalelization;
+        public TPLClosestPairFounder(int depthOfParalelization = 2)
+        {
+            this.DepthOfParalelization = depthOfParalelization;
+        }
+
         private class MinimumEntity
         {
             public double Distance { get; set; }
@@ -16,9 +24,9 @@ namespace TwoClosestPointsOnCanvas.Implementations
         }
         private const int _magicConstForNLogN = 7;
 
-        private Tuple<List<Point>, MinimumEntity> recursiveProcess(List<Point> points)
+        private Tuple<List<Point>, MinimumEntity> recursiveProcess(List<Point> points, int depth)
         {
-            if(points.Count < 2)
+            if (points.Count < 2)
             {
                 return new Tuple<List<Point>, MinimumEntity>(points, new MinimumEntity { Distance = Double.MaxValue });
             }
@@ -33,19 +41,34 @@ namespace TwoClosestPointsOnCanvas.Implementations
                 left = points.Take(half);
                 right = points.Skip(half).Take(points.Count - half);
             }
-            var leftResult = recursiveProcess(left.ToList());
-            var rightResult = recursiveProcess(right.ToList());
-           
+            Tuple<List<Point>, MinimumEntity> leftResult;
+            Tuple<List<Point>, MinimumEntity> rightResult;
+            if (depth >= this.DepthOfParalelization)
+            {
+                leftResult = recursiveProcess(left.ToList(), depth+1);
+                rightResult = recursiveProcess(right.ToList(), depth+1);
+            }
+            else
+            {
+                var tl = new Task<Tuple<List<Point>, MinimumEntity>>(() => recursiveProcess(left.ToList(), depth + 1));
+                var tr = new Task<Tuple<List<Point>, MinimumEntity>>(() => recursiveProcess(right.ToList(), depth + 1));
+                tl.Start();
+                tr.Start();
+                Task.WaitAll(tl, tr);
+                leftResult = tl.Result;
+                rightResult = tr.Result;
+            }
+
             var newPoints = mergeByY(leftResult.Item1, rightResult.Item1);
             var newDistance = boundaryMerge(newPoints, leftResult.Item2, rightResult.Item2, medianX);
             return new Tuple<List<Point>, MinimumEntity>(newPoints, newDistance);
         }
 
-        private MinimumEntity boundaryMerge(List<Point> newPoints, 
-            MinimumEntity leftClosest, 
-            MinimumEntity rightClosest, 
+        private MinimumEntity boundaryMerge(List<Point> newPoints,
+            MinimumEntity leftClosest,
+            MinimumEntity rightClosest,
             double medianX)
-        { 
+        {
             var initialMin = Math.Min(leftClosest.Distance, rightClosest.Distance);
             var points = leftClosest.Distance < rightClosest.Distance ? leftClosest.Between : rightClosest.Between;
             var mSet = newPoints
@@ -55,7 +78,7 @@ namespace TwoClosestPointsOnCanvas.Implementations
             var localRes = new Tuple<Point, Point>(null, null);
             for (var i = 0; i < mSet.Count; ++i)
             {
-                for(var j = 1; j <= Math.Min(mSet.Count - i - 1, _magicConstForNLogN); ++j)
+                for (var j = 1; j <= Math.Min(mSet.Count - i - 1, _magicConstForNLogN); ++j)
                 {
                     var dist = MathHelper.GetDistance(mSet[i], mSet[i + j]);
                     if (dist <= mMin)
@@ -65,7 +88,7 @@ namespace TwoClosestPointsOnCanvas.Implementations
                     }
                 }
             }
-            
+
             var result = Math.Min(initialMin, mMin);
             if (mMin <= initialMin)
             {
@@ -103,8 +126,7 @@ namespace TwoClosestPointsOnCanvas.Implementations
 
         public Tuple<Point, Point> GetClosestPair(List<Point> points)
         {
-            var resultRec = recursiveProcess(points);
-            return resultRec.Item2.Between;
+            throw new NotImplementedException();
         }
     }
 }

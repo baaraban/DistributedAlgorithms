@@ -8,7 +8,7 @@ namespace TwoClosestPointsOnCanvas.Implementations
 {
     public class BruteForceClosestPairFounder : IClosestPairFounder
     {
-        public Tuple<Point, Point> GetClosestPair(List<Point> points, bool printSortedPointsInConsole = false)
+        public Tuple<Point, Point> GetClosestPair(List<Point> points)
         {
             var firstPoint = new Point();
             var secondPoint = new Point();

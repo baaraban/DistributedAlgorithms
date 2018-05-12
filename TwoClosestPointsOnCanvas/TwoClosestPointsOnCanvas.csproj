@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Implementations\BruteForceClosestPairFounder.cs" />
     <Compile Include="Implementations\SequantionalClosestPairFounder.cs" />
+    <Compile Include="Implementations\TPLClosestPairFounder.cs" />
     <Compile Include="Interfaces\IClosestPairFounder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

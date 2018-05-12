@@ -6,6 +6,6 @@ namespace TwoClosestPointsOnCanvas.Interfaces
 {
     public interface IClosestPairFounder
     {
-        Tuple<Point, Point> GetClosestPair(List<Point> points, bool printSortedPointsInConsole = false);
+        Tuple<Point, Point> GetClosestPair(List<Point> points);
     }
 }
