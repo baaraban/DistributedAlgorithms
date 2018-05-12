@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Implementations\BruteForceClosestPairFounder.cs" />
     <Compile Include="Implementations\SequantionalClosestPairFounder.cs" />
     <Compile Include="Interfaces\IClosestPairFounder.cs" />
     <Compile Include="Program.cs" />
