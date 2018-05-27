@@ -43,11 +43,9 @@
     <Compile Include="Managers\Implementations\ThreadingActionQueue.cs" />
     <Compile Include="Managers\Implementations\TPLActionQueue.cs" />
     <Compile Include="Managers\Interfaces\IParallelActionQueue.cs" />
+    <Compile Include="MathStructures\NetworkGraph.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="MathStructures\Abstractions\Graphs\" />
-    <Folder Include="MathStructures\Implementations\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
