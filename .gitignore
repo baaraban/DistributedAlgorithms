@@ -1,14 +1,7 @@
 **/build
 **/obj
 *.dll
-/PrefixSum/bin/Debug/*.exe
-/PrefixSum/bin/Debug/PrefixSum.exe.config
-/PrefixSum/bin/Debug/*.pdb
 /UpgradeLog.htm
-/Helpers/bin/Debug/*.pdb
 /.vs/DistributedAlgos/v15/Server/sqlite3/*.ide-shm
 /.vs/DistributedAlgos/v15/Server/sqlite3
-/Infrastructure/bin/Debug
-/MergeSort/bin/Debug
-/Estimator/bin/Debug
-/MapReduce/bin/Debug
+/*/bin/Debug
