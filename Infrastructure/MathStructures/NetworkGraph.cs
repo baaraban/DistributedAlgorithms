@@ -68,6 +68,8 @@ namespace Infrastructure.MathStructures
                 }
             } while(nodesQueue.Count > 0);
 
+            if (!current.Equals(Sink)) return null;
+
             var result = new List<NetworkEdge>();
             while(current != Source)
             {

@@ -41,19 +41,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DummySolutions\FordFulkersonMaxFlow.cs" />
+    <Compile Include="Implementations\SequantionalEdmondKarpMaxFlow.cs" />
+    <Compile Include="Interfaces\IMaxFlowFinder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="TestingExamples\graph1.txt" />
     <Content Include="TestingExamples\graph2.txt" />
+    <Content Include="TestingExamples\graph3.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Implementations\" />
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Helpers\Helpers.csproj">
       <Project>{2c4a17e0-fca9-4037-9f48-493b15dca796}</Project>

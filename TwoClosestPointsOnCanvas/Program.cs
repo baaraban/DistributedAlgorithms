@@ -2,17 +2,12 @@
 using Helpers.ConstructionClasses;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TwoClosestPointsOnCanvas.Implementations;
 
 namespace TwoClosestPointsOnCanvas
 {
     public class Program
     {
-        
-
         private static void printCanvas(List<Point> canvas)
         {
             Console.WriteLine("INITIAL SOMETHING");
