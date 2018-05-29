@@ -40,6 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Fabrics\Abstractions\Parameters\FabricParameters.cs" />
+    <Compile Include="Fabrics\Abstractions\IFabric.cs" />
+    <Compile Include="Fabrics\Implementations\NetworkGraphFabric.cs" />
+    <Compile Include="Fabrics\Implementations\Parameters\NetworkGraphFabricParameters.cs" />
     <Compile Include="Managers\Implementations\ThreadingActionQueue.cs" />
     <Compile Include="Managers\Implementations\TPLActionQueue.cs" />
     <Compile Include="Managers\Interfaces\IParallelActionQueue.cs" />
